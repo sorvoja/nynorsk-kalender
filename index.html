@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norsk Kalender</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="year-nav">
+        <button class="nav-arrow" id="prevYear" title="Førre år">&larr;</button>
+        <h1 id="yearDisplay">2026</h1>
+        <button class="nav-arrow" id="nextYear" title="Neste år">&rarr;</button>
+    </nav>
+
+    <main class="calendar-grid" id="calendar"></main>
+
+    <section class="holidays-section">
+        <h2>Offentlege høgtidsdagar i Noreg</h2>
+        <ul class="holiday-list" id="holidayList"></ul>
+    </section>
+
+    <script src="calendar.js"></script>
+</body>
+</html>

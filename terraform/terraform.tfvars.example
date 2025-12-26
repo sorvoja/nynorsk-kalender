@@ -1,0 +1,8 @@
+aws_region  = "eu-north-1"
+bucket_name = "norsk-kalender-example"
+domain_name = "kalender.example.no"
+github_org  = "your-username"
+github_repo = "calendar"
+
+# Set to false if the GitHub OIDC provider already exists in your account
+create_oidc_provider = true
