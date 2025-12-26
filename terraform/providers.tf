@@ -18,7 +18,8 @@ terraform {
 
 # Primary provider for most resources
 provider "aws" {
-  region = var.aws_region
+  region  = var.aws_region
+  profile = "kalender"
 
   default_tags {
     tags = {
@@ -30,8 +31,9 @@ provider "aws" {
 
 # ACM certificates for CloudFront must be in us-east-1
 provider "aws" {
-  alias  = "us_east_1"
-  region = "us-east-1"
+  alias   = "us_east_1"
+  region  = "us-east-1"
+  profile = "kalender"
 
   default_tags {
     tags = {
