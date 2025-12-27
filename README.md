@@ -2,15 +2,17 @@
 
 Ein nettbasert kalender med norsk språkdrakt og høgtidsdagar.
 
+**[Sjå kalenderen på kalender.wn.no](https://kalender.wn.no)**
+
 ## Funksjonar
 
-- Syner alle tolv månadene i eit år i eit rutenett på 3x4
-- Veketal etter ISO-standarden
+- Syner alle tolv månadene i eit år i eit rutenett (3×4)
+- Veketal etter ISO 8601-standarden
 - Norske vekedagsforkortingar (M, T, O, T, F, L, S)
 - Sundagar og offentlege høgtidsdagar er merkte med raud farge
 - Navigering mellom år med piltastar
-- Dynamisk utrekning av rørlege høgtidsdagar (påske, pinse, o.s.b.)
-- Liste over alle offentlege høgtidsdagar med utfyllande forklaringar
+- Dynamisk utrekning av rørlege høgtidsdagar (påske, pinse, o.a.)
+- Forklaringar av høgtidsdagane i tradisjonell nynorsk (fyre 2012-reforma)
 
 ## Høgtidsdagar
 
@@ -35,6 +37,8 @@ Kalenderen inneheld alle offentlege høgtidsdagar i Noreg:
 ## Teknisk
 
 Kalenderen er bygt med rein HTML, CSS og JavaScript utan avhengigheiter til eksterne bibliotek.
+
+Rørlege høgtidsdagar vert rekna ut frå påskedagen ved hjelp av den anonyme gregorianske algoritmen (*Computus*).
 
 ### Filstruktur
 
@@ -79,7 +83,7 @@ aws_region  = "eu-north-1"
 bucket_name = "mitt-kalender-bucket"
 domain_name = "kalender.mittdomene.no"
 github_org  = "mitt-brukarnamn"
-github_repo = "calendar"
+github_repo = "nynorsk-kalender"
 ```
 
 #### 2. Køyr Terraform

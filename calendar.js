@@ -1,4 +1,5 @@
-let currentYear = 2026;
+const today = new Date();
+let currentYear = today.getFullYear();
 
 const norwegianMonths = [
     'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni',
@@ -88,9 +89,19 @@ function getISOWeek(date) {
     return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
 }
 
+function isToday(year, month, day) {
+    return year === today.getFullYear() &&
+           month === today.getMonth() &&
+           day === today.getDate();
+}
+
 function createMonth(year, month, holidays) {
     const monthDiv = document.createElement('div');
     monthDiv.className = 'month';
+
+    if (year === today.getFullYear() && month === today.getMonth()) {
+        monthDiv.id = 'current-month';
+    }
 
     const monthName = document.createElement('div');
     monthName.className = 'month-name';
@@ -143,10 +154,13 @@ function createMonth(year, month, holidays) {
 
         const isSunday = dayOfWeek === 6;
         const isHol = isHoliday(year, month, currentDay, holidays);
+        const isTodayCell = isToday(year, month, currentDay);
 
-        if (isSunday || isHol) {
-            dayCell.className = isSunday ? 'sunday' : 'holiday';
-        }
+        const classes = [];
+        if (isSunday) classes.push('sunday');
+        if (isHol && !isSunday) classes.push('holiday');
+        if (isTodayCell) classes.push('today');
+        if (classes.length) dayCell.className = classes.join(' ');
 
         weekRow.appendChild(dayCell);
         currentDay++;
@@ -182,7 +196,7 @@ function renderHolidayList(holidays) {
     });
 }
 
-function renderCalendar(year) {
+function renderCalendar(year, scrollToCurrentMonth = false) {
     const calendar = document.getElementById('calendar');
     calendar.innerHTML = '';
 
@@ -195,6 +209,13 @@ function renderCalendar(year) {
     renderHolidayList(holidays);
     document.getElementById('yearDisplay').textContent = year;
     document.title = `Kalender ${year}`;
+
+    if (scrollToCurrentMonth) {
+        const currentMonth = document.getElementById('current-month');
+        if (currentMonth) {
+            currentMonth.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
 }
 
 function init() {
@@ -208,7 +229,7 @@ function init() {
         renderCalendar(currentYear);
     });
 
-    renderCalendar(currentYear);
+    renderCalendar(currentYear, true);
 }
 
 document.addEventListener('DOMContentLoaded', init);
